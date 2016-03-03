@@ -1,14 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const host = process.env.HOST || "0.0.0.0";
-const port = (process.env.PORT + 1) || 3001;
-
 module.exports = {
     devtool: 'eval',
     entry: [
-        "webpack-dev-server/client?http://" + host + ":" + port,
-        'webpack/hot/only-dev-server',
+        'webpack/hot/dev-server',
+        'webpack-hot-middleware/client',
         './src/index'
     ],
     output: {
@@ -17,6 +14,7 @@ module.exports = {
         publicPath: '/dist/'
     },
     plugins: [
+        new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ],
     resolveLoader: {

@@ -2,6 +2,9 @@ import React, {Component} from 'react'
 import styles from '../dist/app.css';
 
 export  default class AppPage extends Component {
+    constructor (props){
+        super(props);
+    }
     render() {
         return (
             <div>
