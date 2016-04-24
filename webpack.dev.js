@@ -2,11 +2,11 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-    devtool: 'eval',
+    devtool: 'inline-source-map',
     entry: [
         'webpack/hot/dev-server',
         'webpack-hot-middleware/client',
-        './src/index'
+        './src/app/app'
     ],
     output: {
         path: path.join(__dirname, 'dist'),
