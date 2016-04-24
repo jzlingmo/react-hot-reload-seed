@@ -1,10 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-    devtool: null,
+    devtool: 'eval',
     entry: [
+        'webpack/hot/dev-server',
+        'webpack-hot-middleware/client',
         './src/index'
     ],
     output: {
@@ -13,14 +14,7 @@ module.exports = {
         publicPath: '/dist/'
     },
     plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {
-                'NODE_ENV': JSON.stringify('production')
-            }
-        }),
-        new ExtractTextPlugin("app.css"),
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.optimize.UglifyJsPlugin()
+        new webpack.HotModuleReplacementPlugin()
     ],
     resolveLoader: {
         modulesDirectories: ['node_modules']
@@ -41,12 +35,12 @@ module.exports = {
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+                loaders: ['style', 'css?sourceMap']
             },
             {
                 test: /\.scss/,
                 exclude: /node_modules/,
-                loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
+                loaders: ['style', 'css', 'sass?sourceMap']
             }
         ]
     }

@@ -1,19 +1,13 @@
 const gulp = require('gulp');
-const gutil = require('gulp-util');
 const webpack = require("webpack");
 const browserSync = require('browser-sync');
 
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
-const scss = require('gulp-scss');
-const concat = require('gulp-concat');
-
-const webpackConfig = require('./webpack.config.js');
-
-const webpackPublishConfig = require('./webpack.publish.js');
-
+const webpackConfig = require('./webpack.dev.js');
 const bundle = webpack(webpackConfig);
+
 gulp.task('browser-sync-server', () => {
     browserSync({
         https: false,
@@ -39,17 +33,5 @@ gulp.task('browser-sync-server', () => {
     });
 });
 
-
-gulp.task('webpack:build', (callback) => {
-    // run webpack
-    webpack(webpackPublishConfig, (err, stats) => {
-        if (err) throw new gutil.PluginError('webpack:build', err);
-        callback();
-    });
-});
-
-
 gulp.task('dev', ['browser-sync-server'], function () {
 });
-
-gulp.task('build', ['webpack:build']);
