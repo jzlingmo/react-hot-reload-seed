@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import styles from '../dist/app.css';
+import styles from './index.scss';
 
 export  default class AppPage extends Component {
     constructor (props){
@@ -8,7 +8,7 @@ export  default class AppPage extends Component {
     render() {
         return (
             <div>
-                <h1>Hello world23</h1>
+                <h1>Hello world</h1>
                 <div>Hey! This is just a demo page.</div>
             </div>
         )

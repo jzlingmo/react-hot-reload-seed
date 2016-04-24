@@ -13,14 +13,6 @@ const webpackConfig = require('./webpack.config.js');
 
 const webpackPublishConfig = require('./webpack.publish.js');
 
-gulp.task('css', () => {
-    gulp.src('src/**/*.{css,scss}')
-        .pipe(scss())
-        .pipe(concat('app.css'))
-        .pipe(gulp.dest("dist/"));
-});
-
-
 const bundle = webpack(webpackConfig);
 gulp.task('browser-sync-server', () => {
     browserSync({
@@ -57,8 +49,7 @@ gulp.task('webpack:build', (callback) => {
 });
 
 
-gulp.task('dev', ['css', 'browser-sync-server'], function () {
-    gulp.watch(['src/**/*.{css,scss}'], ['css']);
+gulp.task('dev', ['browser-sync-server'], function () {
 });
 
-gulp.task('build', ['css', 'webpack:build']);
+gulp.task('build', ['webpack:build']);
