@@ -8,7 +8,7 @@ export  default class AppPage extends Component {
     render() {
         return (
             <div>
-                <h1>Hello world</h1>
+                <h1>Hello world23</h1>
                 <div>Hey! This is just a demo page.</div>
             </div>
         )
